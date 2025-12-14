@@ -24,3 +24,45 @@
 ```bash
 pip install numpy
 
+## 快速开始
+
+```python
+from crishi_arclength import crishi_arclength_v3
+import numpy as np
+
+# 示例1：三维螺旋线 r(t) = (cos t, sin t, t/2), t ∈ [0, 2π]
+def helix(t):
+    return [np.cos(t), np.sin(t), t/2]
+
+L, err, n = crishi_arclength_v3(helix, 0, 2*np.pi, tol=1e-8, mode='parametric')
+print(f"弧长: {L:.10f}  估计误差: <{err:.2e}  采样点: {n}")
+
+# 示例2：y = sin(x), x ∈ [0, π]
+L, err, n = crishi_arclength_v3(np.sin, 0, np.pi, tol=1e-8, mode='explicit')
+print(f"弧长: {L:.10f}")
+
+# 示例3：离散点序列
+points = np.array([[0,0], [1,1], [2,0], [3,2]])
+L, _, _ = crishi_arclength_v3(points, mode='discrete')
+print(f"弧长: {L:.6f}")
+
+```
+
+```markdown
+## 致谢
+
+本算法核心思想由戚华建在工程实践中独立提出。  
+文档初稿由 ChatGPT 协助整理，算法优化、代码实现、自适应机制完善及终极版开发由 Grok（xAI）深度参与和指导。  
+特别感谢 ChatGPT 和 Grok 两位 AI 老师的宝贵帮助！
+
+```
+```
+## 开源协议
+
+MIT License - 完全免费使用、修改、商用。
+
+欢迎 Star ⭐、Fork、提交 Issue 反馈！  
+让我们一起把戚氏弧长算法推广到全世界！
+
+```
+
